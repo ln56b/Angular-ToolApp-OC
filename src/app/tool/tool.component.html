@@ -3,11 +3,11 @@
 <li [ngClass]="{'list-group-item': true, 
                 'list-group-item-success': toolStatus === 'On',
                 'list-group-item-danger': toolStatus === 'Off'}">
-  <h4 [ngStyle]="{color: getColor()}">Tool : {{ toolName }} -- Status : {{ getStatus() }} </h4>
-  <button class="btn btn-success" 
-          (click)="onSwitchOn()" 
-          [disabled]="toolStatus === 'On'">Switch On</button>
-  <button class="btn btn-danger" 
-          (click)="onSwitchOff()" 
-          [disabled]="toolStatus === 'Off'">Switch On</button>
+        <h4 [ngStyle]="{color: getColor()}">Tool : {{ toolName }} -- Status : {{ getStatus() }} </h4>
+        <button class="btn btn-success" 
+                (click)="onSwitchOn()" 
+                [disabled]="toolStatus === 'On'">Switch On</button>
+        <button class="btn btn-danger" 
+                (click)="onSwitchOff()" 
+                [disabled]="toolStatus === 'Off'">Switch On</button>
 </li>

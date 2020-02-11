@@ -1,4 +1,5 @@
-//4. Add methods to be used on html
+// 3. Create @Input variables and affect them a type.
+// 4. Add methods to be used on html
 
 import { Component, Input, OnInit } from '@angular/core';
 import { ToolService } from '../services/tool.services'
@@ -9,7 +10,6 @@ import { ToolService } from '../services/tool.services'
   styleUrls: ['./tool.component.scss']
 })
 export class ToolComponent implements OnInit {
-  // 3. Create variables and affect them a type.
   @Input() toolName : string;
   @Input() toolStatus : string;
   @Input() indexOfTool : number;
