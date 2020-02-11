@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { toolService } from './services/tool.services';
+import { ToolService } from './services/tool.services';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   )
   tools: any[];
   
-  constructor(private toolService: toolService) {
+  constructor(private toolService: ToolService) {
     setTimeout(
       () => {
         this.isAuth = true;

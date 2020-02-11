@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InvokeFunctionExpr } from '@angular/compiler';
+import { ToolService } from '../services/tool.services'
 
 @Component({
   selector: 'app-tool',
@@ -10,8 +10,9 @@ export class ToolComponent implements OnInit {
   
   @Input() toolName : string;
   @Input() toolStatus : string;
+  @Input() indexOfTool : number;
   
-  constructor() { }
+  constructor(private toolService: ToolService) { }
 
   ngOnInit(): void {
   }
@@ -26,5 +27,13 @@ export class ToolComponent implements OnInit {
     } else if (this.toolStatus === 'Off')  {
       return 'red';
     }
+  }
+
+  onSwitchOn() {
+    this.toolService.switchOnOne(this.indexOfTool);
+  }
+
+  onSwitchOff() {
+    this.toolService.switchOffOne(this.indexOfTool);
   }
 }

@@ -1,11 +1,15 @@
 <li [ngClass]="{'list-group-item': true, 
                 'list-group-item-success': toolStatus === 'On',
                 'list-group-item-danger': toolStatus === 'Off'}">
-  <div
+  <!-- <div
   style="width:20px; height:20px; background-color:red;"
   *ngIf="toolStatus === 'Off'" >
-  </div>
-  <h4 [ngStyle]="{color: getColor()}">Tool : {{ toolName }} -- Status : {{ getStatus() }} </h4
-    >
-  <input type="text" class="form-control" [(ngModel)]="toolName">
+  </div> -->
+  <h4 [ngStyle]="{color: getColor()}">Tool : {{ toolName }} -- Status : {{ getStatus() }} </h4>
+  <button class="btn btn-success" 
+          (click)="onSwitchOn()" 
+          [disabled]="toolStatus === 'On'">Switch On</button>
+  <button class="btn btn-danger" 
+          (click)="onSwitchOff()" 
+          [disabled]="toolStatus === 'Off'">Switch On</button>
 </li>

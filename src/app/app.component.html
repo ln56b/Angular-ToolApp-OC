@@ -6,7 +6,8 @@
       <p>Updated on: {{ lastUpdate | async | date: 'y MMMM EEEE d' | uppercase }} </p>
       <ul class="list-group">
         <app-tool 
-        *ngFor="let tool of tools" 
+        *ngFor="let tool of tools; let i = index"
+        [indexOfTool] = i 
         [toolName]="tool.name"
         [toolStatus]="tool.status"
         ></app-tool>

@@ -1,4 +1,4 @@
-export class toolService {
+export class ToolService {
 
   tools = [
     {
@@ -26,4 +26,12 @@ export class toolService {
       tool.status = "Off"
     }
   };
+
+  switchOnOne(index: number) {
+    this.tools[index].status = 'On';
+  }
+
+  switchOffOne(index: number) {
+    this.tools[index].status = 'Off';
+  }
 }

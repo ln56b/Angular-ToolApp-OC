@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToolComponent } from './tool/tool.component';
 
-import { toolService } from './services/tool.services'
+import { ToolService } from './services/tool.services'
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { toolService } from './services/tool.services'
     FormsModule
   ],
   providers: [
-    toolService
+    ToolService
   ],
   bootstrap: [AppComponent]
 })
