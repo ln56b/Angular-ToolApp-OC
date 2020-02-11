@@ -1,10 +1,8 @@
+<!-- 2. Refer to variable placed in app html using string interpolation -->
+
 <li [ngClass]="{'list-group-item': true, 
                 'list-group-item-success': toolStatus === 'On',
                 'list-group-item-danger': toolStatus === 'Off'}">
-  <!-- <div
-  style="width:20px; height:20px; background-color:red;"
-  *ngIf="toolStatus === 'Off'" >
-  </div> -->
   <h4 [ngStyle]="{color: getColor()}">Tool : {{ toolName }} -- Status : {{ getStatus() }} </h4>
   <button class="btn btn-success" 
           (click)="onSwitchOn()" 

@@ -1,3 +1,7 @@
+// 5. Add variables to be used in html
+// 7. Create setTimeOut to modify auth status
+// 9. Create switchOn method to be used on click in html 
+
 import { Component, OnInit } from '@angular/core';
 import { ToolService } from './services/tool.services';
 
