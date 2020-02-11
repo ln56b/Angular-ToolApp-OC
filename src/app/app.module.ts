@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FirstComponentComponent } from './first-component/first-component.component';
 import { ToolComponent } from './tool/tool.component';
+
+import { toolService } from './services/tool.services'
 
 @NgModule({
   declarations: [
     AppComponent,
-    FirstComponentComponent,
     ToolComponent
   ],
   imports: [
@@ -18,7 +18,9 @@ import { ToolComponent } from './tool/tool.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    toolService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

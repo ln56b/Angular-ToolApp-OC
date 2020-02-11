@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { toolService } from './services/tool.services';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isAuth = false;
 
   lastUpdate = new Promise(
@@ -18,30 +19,25 @@ export class AppComponent {
       );
     }
   )
-
-  tools = [
-    {
-    name: 'Washing machine',
-    status: 'Off'
-    },
-    {
-      name: 'TV',
-      status: 'Off'
-      },
-      {
-        name: 'Computer',
-        status: 'On'
-        },
-  ];
+  tools: any[];
   
-  constructor() {
+  constructor(private toolService: toolService) {
     setTimeout(
       () => {
         this.isAuth = true;
       }, 4000
     );
   }
+
+  ngOnInit() {
+    this.tools = this.toolService.tools;
+  }
+
   onSwitchOn() {
-    console.log("Let's switch on all tools!")
+    this.toolService.switchOnAll()
+  }
+
+  onSwitchOff() {
+    this.toolService.switchOffAll()
   }
 }
