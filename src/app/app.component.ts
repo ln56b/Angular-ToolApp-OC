@@ -1,36 +1,30 @@
 // 5. Add variables to be used in html
 // 7. Create setTimeOut to modify auth status
-// 9. Create switchOn method to be used on click in html 
+// 9. Create switchOn method to be used on click in html
 
-import { Component, OnInit } from '@angular/core';
-import { ToolService } from './services/tool.services';
+import { Component, OnInit } from "@angular/core";
+import { ToolService } from "./services/tool.services";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
   isAuth = false;
 
-  lastUpdate = new Promise(
-    (resolve, reject) => {
-      const date = new Date();
-      setTimeout(
-        () => {
-          resolve(date);
-        }, 2000
-      );
-    }
-  )
+  lastUpdate = new Promise((resolve, reject) => {
+    const date = new Date();
+    setTimeout(() => {
+      resolve(date);
+    }, 2000);
+  });
   tools: any[];
-  
+
   constructor(private toolService: ToolService) {
-    setTimeout(
-      () => {
-        this.isAuth = true;
-      }, 4000
-    );
+    setTimeout(() => {
+      this.isAuth = true;
+    }, 4000);
   }
 
   ngOnInit() {
@@ -38,10 +32,14 @@ export class AppComponent implements OnInit {
   }
 
   onSwitchOn() {
-    this.toolService.switchOnAll()
+    this.toolService.switchOnAll();
   }
 
   onSwitchOff() {
-    this.toolService.switchOffAll()
+    if (confirm("Are you sure you want to switch off all tools ?")) {
+      this.toolService.switchOffAll();
+    } else {
+      return null;
+    }
   }
 }
