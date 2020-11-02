@@ -2,27 +2,22 @@
 <!-- 6. Apply disable on button if user is not authenticated -->
 <!-- 8. Add future method on button to bind on click event -->
 
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active">
+          <a routerLink="auth">Authentication</a>
+        </li>
+        <li routerLinkActive="active"><a routerLink="tools">Tools</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h2>My tools</h2>
-
-      <p>Updated on: {{ lastUpdate | async | date: 'y MMMM EEEE d' | uppercase }} </p>
-      <ul class="list-group">
-        <app-tool 
-        *ngFor="let tool of tools; let i = index"
-        [indexOfTool] = i 
-        [toolName]="tool.name"
-        [toolStatus]="tool.status"
-        ></app-tool>
-      </ul>
-      <button class="btn btn-success" 
-      [disabled]="!isAuth"
-      (click)="onSwitchOn()"
-      >Switch on all tools</button>
-      <button class="btn btn-danger" 
-      (click)="onSwitchOff()"
-      >Switch off all tools</button>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

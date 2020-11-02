@@ -1,0 +1,17 @@
+<h2>My tools</h2>
+
+<p>Updated on: {{ lastUpdate | async | date: "y MMMM EEEE d" | uppercase }}</p>
+<ul class="list-group">
+  <app-tool
+    *ngFor="let tool of tools; let i = index"
+    [indexOfTool]="i"
+    [toolName]="tool.name"
+    [toolStatus]="tool.status"
+  ></app-tool>
+</ul>
+<button class="btn btn-success" [disabled]="!isAuth" (click)="onSwitchOn()">
+  Switch on all tools
+</button>
+<button class="btn btn-danger" (click)="onSwitchOff()">
+  Switch off all tools
+</button>
