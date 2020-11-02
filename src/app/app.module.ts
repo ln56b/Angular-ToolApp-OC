@@ -10,6 +10,7 @@ import { ToolService } from "./services/tool.services";
 import { AuthComponent } from "./auth/auth.component";
 import { ToolViewComponent } from "./tool-view/tool-view.component";
 import { RouterModule, Routes } from "@angular/router";
+import { AuthService } from "./services/auth.service";
 
 const appRoutes: Routes = [
   { path: "tools", component: ToolViewComponent },
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [ToolService],
+  providers: [ToolService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
