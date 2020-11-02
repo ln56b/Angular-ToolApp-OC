@@ -14,8 +14,8 @@ import { SingleToolComponent } from "./single-tool/single-tool.component";
 
 const appRoutes: Routes = [
   { path: "tools", component: ToolViewComponent },
-  { path: "tools/:id", component: SingleToolComponent },
   { path: "auth", component: AuthComponent },
+  { path: "tools/:id", component: SingleToolComponent },
   { path: "", component: ToolViewComponent },
 ];
 
