@@ -2,19 +2,35 @@
 // 7. Create setTimeOut to modify auth status
 // 9. Create switchOn method to be used on click in html
 
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Observable, Subscription } from "rxjs/";
+import { interval } from "rxjs";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent {
-  isAuth = false;
+export class AppComponent implements OnInit, OnDestroy {
+  seconds: number;
+  counterSubscription: Subscription;
 
-  constructor() {
-    setTimeout(() => {
-      this.isAuth = true;
-    }, 4000);
+  ngOnInit() {
+    const counter = interval(1000);
+    this.counterSubscription = counter.subscribe(
+      (value) => {
+        this.seconds = value;
+      },
+      (error) => {
+        console.log("Oups" + error);
+      },
+      () => {
+        console.log("Observable completed");
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.counterSubscription.unsubscribe();
   }
 }

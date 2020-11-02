@@ -1,5 +1,9 @@
+import { Subject } from "rxjs";
+
 export class ToolService {
-  tools = [
+  toolsSubject = new Subject<any[]>();
+
+  private tools = [
     {
       id: 1,
       name: "Washing machine",
@@ -17,6 +21,10 @@ export class ToolService {
     },
   ];
 
+  emitToolSubject() {
+    this.toolsSubject.next(this.tools.slice());
+  }
+
   getToolById(id: number) {
     const tool = this.tools.find((tool) => tool.id === id);
     return tool;
@@ -26,19 +34,23 @@ export class ToolService {
     for (let tool of this.tools) {
       tool.status = "On";
     }
+    this.emitToolSubject();
   }
 
   switchOffAll() {
     for (let tool of this.tools) {
       tool.status = "Off";
     }
+    this.emitToolSubject();
   }
 
   switchOnOne(index: number) {
     this.tools[index].status = "On";
+    this.emitToolSubject();
   }
 
   switchOffOne(index: number) {
     this.tools[index].status = "Off";
+    this.emitToolSubject();
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 import { ToolService } from "../services/tool.service";
 
 @Component({
@@ -6,7 +7,7 @@ import { ToolService } from "../services/tool.service";
   templateUrl: "./tool-view.component.html",
   styleUrls: ["./tool-view.component.scss"],
 })
-export class ToolViewComponent implements OnInit {
+export class ToolViewComponent implements OnInit, OnDestroy {
   lastUpdate = new Promise((resolve, reject) => {
     const date = new Date();
     setTimeout(() => {
@@ -15,12 +16,23 @@ export class ToolViewComponent implements OnInit {
   });
 
   tools: any[];
+  toolSubscription: Subscription;
+
   isAuth = false;
 
   constructor(private toolService: ToolService) {}
 
   ngOnInit() {
-    this.tools = this.toolService.tools;
+    this.toolSubscription = this.toolService.toolsSubject.subscribe(
+      (tools: any[]) => {
+        this.tools = tools;
+      }
+    );
+    this.toolService.emitToolSubject();
+  }
+
+  ngOnDestroy() {
+    this.toolSubscription.unsubscribe();
   }
 
   onSwitchOn() {
