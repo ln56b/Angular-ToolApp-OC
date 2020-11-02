@@ -8,6 +8,7 @@
   <h4 [ngStyle]="{ color: getColor() }">
     Tool : {{ toolName }} -- Status : {{ getStatus() }}
   </h4>
+  <a [routerLink]="[toolId]">More info</a>
   <button
     class="btn btn-success"
     (click)="onSwitchOn()"
