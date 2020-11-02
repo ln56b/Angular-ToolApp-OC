@@ -11,12 +11,18 @@ import { ToolViewComponent } from "./tool-view/tool-view.component";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthService } from "./services/auth.service";
 import { SingleToolComponent } from "./single-tool/single-tool.component";
+import { AuthGuard } from "./services/auth-guard.service";
 
 const appRoutes: Routes = [
-  { path: "tools", component: ToolViewComponent },
+  { path: "tools", canActivate: [AuthGuard], component: ToolViewComponent },
+  {
+    path: "tools/:id",
+    canActivate: [AuthGuard],
+    component: SingleToolComponent,
+  },
   { path: "auth", component: AuthComponent },
-  { path: "tools/:id", component: SingleToolComponent },
   { path: "", component: ToolViewComponent },
+  { path: "**", redirectTo: "/tools" },
 ];
 
 @NgModule({
@@ -28,7 +34,7 @@ const appRoutes: Routes = [
     SingleToolComponent,
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
-  providers: [ToolService, AuthService],
+  providers: [ToolService, AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -11,6 +11,7 @@ export class AuthService {
   }
 
   signOut() {
+    alert("You have been signed out");
     this.isAuth = false;
   }
 }
