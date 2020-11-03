@@ -21,6 +21,20 @@ export class ToolService {
     },
   ];
 
+  addTool(name: string, status: string) {
+    const toolObject = {
+      id: 0,
+      name: "",
+      status: "",
+    };
+
+    toolObject.name = name;
+    toolObject.status = status;
+    toolObject.id = this.tools[this.tools.length - 1].id + 1;
+    this.tools.push(toolObject);
+    this.emitToolSubject();
+  }
+
   emitToolSubject() {
     this.toolsSubject.next(this.tools.slice());
   }
