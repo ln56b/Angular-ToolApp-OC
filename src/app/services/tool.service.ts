@@ -1,25 +1,14 @@
 import { Subject } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class ToolService {
   toolsSubject = new Subject<any[]>();
 
-  private tools = [
-    {
-      id: 1,
-      name: "Washing machine",
-      status: "Off",
-    },
-    {
-      id: 2,
-      name: "TV",
-      status: "Off",
-    },
-    {
-      id: 3,
-      name: "Computer",
-      status: "On",
-    },
-  ];
+  private tools = [];
+
+  constructor(private httpClient: HttpClient) {}
 
   addTool(name: string, status: string) {
     const toolObject = {
@@ -42,6 +31,31 @@ export class ToolService {
   getToolById(id: number) {
     const tool = this.tools.find((tool) => tool.id === id);
     return tool;
+  }
+
+  getToolFromServer() {
+    this.httpClient
+      .get<any[]>("https://angular-tool-app.firebaseio.com/tools.json")
+      .subscribe(
+        (res) => {
+          this.tools = res;
+          this.emitToolSubject();
+        },
+        (err) => {
+          console.log("Loading error" + err);
+        }
+      );
+  }
+
+  saveToolsToServer() {
+    this.httpClient
+      .put("https://angular-tool-app.firebaseio.com/tools.json", this.tools)
+      .subscribe(
+        () => {
+          console.log("data saved");
+        },
+        (error) => console.log("This error occurred" + error)
+      );
   }
 
   switchOnAll() {

@@ -35,6 +35,14 @@ export class ToolViewComponent implements OnInit, OnDestroy {
     this.toolSubscription.unsubscribe();
   }
 
+  onFetch() {
+    this.toolService.getToolFromServer();
+  }
+
+  onSave() {
+    this.toolService.saveToolsToServer();
+  }
+
   onSwitchOn() {
     this.toolService.switchOnAll();
   }
