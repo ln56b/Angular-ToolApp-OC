@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
+import { Tool } from "../models/Tool.model";
 import { ToolService } from "../services/tool.service";
 
 @Component({
@@ -15,7 +16,7 @@ export class ToolViewComponent implements OnInit, OnDestroy {
     }, 2000);
   });
 
-  tools: any[];
+  tools: Tool[];
   toolSubscription: Subscription;
 
   isAuth = false;
@@ -24,7 +25,7 @@ export class ToolViewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.toolSubscription = this.toolService.toolsSubject.subscribe(
-      (tools: any[]) => {
+      (tools: Tool[]) => {
         this.tools = tools;
       }
     );

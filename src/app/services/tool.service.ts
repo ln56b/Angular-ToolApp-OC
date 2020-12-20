@@ -1,10 +1,11 @@
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Tool } from "../models/Tool.model";
 
 @Injectable()
 export class ToolService {
-  toolsSubject = new Subject<any[]>();
+  toolsSubject = new Subject<Tool[]>();
 
   private tools = [];
 
@@ -35,7 +36,7 @@ export class ToolService {
 
   getToolFromServer() {
     this.httpClient
-      .get<any[]>("https://angular-tool-app.firebaseio.com/tools.json")
+      .get<Tool[]>("https://angular-tool-app.firebaseio.com/tools.json")
       .subscribe(
         (res) => {
           this.tools = res;
