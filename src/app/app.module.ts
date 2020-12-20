@@ -17,6 +17,7 @@ import { EditToolComponent } from "./edit-tool/edit-tool.component";
 import { UserListComponent } from "./user-list/user-list.component";
 import { UserService } from "./services/user.service";
 import { NewUserComponent } from "./new-user/new-user.component";
+import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 
 const appRoutes: Routes = [
   { path: "tools", canActivate: [AuthGuard], component: ToolViewComponent },
@@ -40,7 +41,10 @@ const appRoutes: Routes = [
   },
   { path: "auth", component: AuthComponent },
   { path: "", component: ToolViewComponent },
-  { path: "**", redirectTo: "/tools" },
+  {
+    path: "**",
+    component: NotFoundPageComponent,
+  },
 ];
 
 @NgModule({
@@ -53,6 +57,7 @@ const appRoutes: Routes = [
     EditToolComponent,
     UserListComponent,
     NewUserComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
